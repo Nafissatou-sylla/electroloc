@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Voiture {% endblock %}
+
+{% block body %}
+    <table class="table">
+        
+        <tbody>
+        {% for voiture in voitures %}
+            
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ voiture.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ voiture.nom }}</td>
+            </tr>
+            <tr>
+                <th>Prix</th>
+                <td>{{ voiture.prix }}</td>
+            </tr>
+            <tr>
+                <th>ALouer</th>
+                <td>{{ voiture.aLouer ? 'Oui' : 'Non' }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ voiture.description }}</td>
+            </tr>
+            <tr>
+                <th>Contact</th>
+                <td>{{ voiture.contact }}</td>
+            </tr>
+            <tr>
+                <th>Image</th>
+                <td>  
+                    <img src={{ asset('uploads/images/' ~ voiture.image) }} alt="Mon image"/>
+                </td>
+                <td>
+                    <a href="{{ path('app_voiture_show', {'id': voiture.id}) }}"><h4>Voir</h4></a>
+                    <a href="{{ path('app_voiture_edit', {'id': voiture.id}) }}"><h4>Modifier</h4></a>
+                </td>
+            </tr>
+            
+        </tbody>
+    </table>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+             
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_voiture_new') }}"> <h3> Creer une nouvelle voiture </h3></a>
+{% endblock %}
